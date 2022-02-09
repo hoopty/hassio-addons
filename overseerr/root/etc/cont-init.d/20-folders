@@ -1,0 +1,7 @@
+#!/usr/bin/with-contenv bash
+
+if [ ! -d /config/overseerr ]; then
+  echo "Creating /config/overseerr"
+  mkdir -p /config/overseerr
+  chown -R abc:abc /config/overseerr
+fi
