@@ -1,0 +1,49 @@
+---
+name: Publish
+
+# yamllint disable-line rule:truthy
+on:
+  release:
+    types:
+      - published
+  workflow_run:
+    workflows: ["CI"]
+    branches: [main]
+    types:
+      - completed
+
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: False
+      matrix:
+        addon: [overseerr]
+        architecture: [amd64]
+        # architecture: [aarch64,amd64,armhf]
+        # architecture: ${{ fromJson(needs.init.outputs.architectures) }}
+        # addons: ${{fromJson(needs.init.outputs.addons)}}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Get Information
+        id: info
+        uses: home-assistant/actions/helpers/info@master
+        with:
+          path: ./${{ matrix.addon }}
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1.12.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish ${{ matrix.addon }}-${{ matrix.architecture }}
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --${{ matrix.architecture }} \
+            --target /data/${{ matrix.addon }}

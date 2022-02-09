@@ -6,7 +6,7 @@ arch:
 backup_exclude:
   - "**/logs/*"
 description: Overseerr is a request management and media discovery tool
-image: hoopty/hassio-overseerr-{arch}
+image: hoopty/hassio-addons/overseerr/{arch}
 map:
   - config:rw
 name: Overseerr
