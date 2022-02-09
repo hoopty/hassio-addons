@@ -3,9 +3,7 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 RUN \
-    set -o pipefail \
-    \
-    && apk add --no-cache \
+    apk add --no-cache \
         curl=7.80.0-r0 \
     \
     && curl -J -L -o /tmp/bashio.tar.gz \
