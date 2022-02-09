@@ -6,7 +6,7 @@ RUN \
     set -o pipefail \
     \
     && apk add --no-cache \
-        curl \
+        curl=7.80.0-r0 \
     \
     && curl -J -L -o /tmp/bashio.tar.gz \
         "https://github.com/hassio-addons/bashio/archive/v0.14.3.tar.gz" \
