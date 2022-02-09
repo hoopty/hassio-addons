@@ -23,5 +23,5 @@ schema:
   TZ: "str?"
 slug: overseerr
 url: https://github.com/hoopty/hassio-addons/tree/main/overseerr#readme
-version: 0.2.0
+version: 0.2.1
 webui: http://[HOST]:[PORT:5055]
