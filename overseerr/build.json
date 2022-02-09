@@ -1,13 +1,13 @@
 {
-    "build_from_template": {
-        "image": "linuxserver/overseerr",
-        "version": "1.28.0-ls25"
-    },
-    "build_from": {
-        "armhf": "linuxserver/overseerr:arm32v7-v1.28.0-ls25",
-        "aarch64": "linuxserver/overseerr:arm64v8-v1.28.0-ls25",
-        "amd64": "linuxserver/overseerr:amd64-v1.28.0-ls25"
-    },
-    "squash": false,
-    "args": {}
+  "build_from_template": {
+    "image": "linuxserver/overseerr",
+    "version": "1.28.0-ls25"
+  },
+  "build_from": {
+    "armhf": "linuxserver/overseerr:arm32v7-v1.28.0-ls25",
+    "aarch64": "linuxserver/overseerr:arm64v8-v1.28.0-ls25",
+    "amd64": "linuxserver/overseerr:amd64-v1.28.0-ls25"
+  },
+  "squash": false,
+  "args": {}
 }
