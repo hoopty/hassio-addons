@@ -2,8 +2,12 @@ ARG BUILD_FROM
 # hadolint ignore=DL3006
 FROM $BUILD_FROM
 
-RUN curl -J -L -o /tmp/bashio.tar.gz \
-        "https://github.com/hassio-addons/bashio/archive/v0.7.1.tar.gz" \
+RUN \
+    apk add --no-cache \
+        curl=7.79.1-r0 \
+    \
+    && curl -J -L -o /tmp/bashio.tar.gz \
+        "https://github.com/hassio-addons/bashio/archive/v0.14.3.tar.gz" \
     && mkdir /tmp/bashio \
     && tar zxvf \
         /tmp/bashio.tar.gz \
@@ -11,7 +15,9 @@ RUN curl -J -L -o /tmp/bashio.tar.gz \
     \
     && mv /tmp/bashio/lib /usr/lib/bashio \
     && ln -s /usr/lib/bashio/bashio /usr/bin/bashio \
-    && rm -fr /tmp/* 
+    \
+    && rm -f -r \
+        /tmp/*
 
 # use /data instead of /config for hass.io environment
 RUN sed -i "s|/config|/config/overseerr|g" /etc/services.d/overseerr/run \
