@@ -22,10 +22,7 @@
     "5055/tcp": "web interface"
   },
   "map": [
-    "config:rw",
-    "share:rw",
-    "media:rw",
-    "ssl"
+    "config:rw"
   ],
   "webui": "http://[HOST]:[PORT:5055]",
   "boot": "auto",
