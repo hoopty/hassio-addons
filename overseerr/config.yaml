@@ -10,14 +10,16 @@ map:
   - config:rw
 name: Overseerr
 options:
-  - PUID: 1001
-  - PGID: 1001
+  PUID: 1001
+  PGID: 1001
 ports:
   5055/tcp: 5055
+ports_description:
+  5055/tcp: web interface
 schema:
-  - PUID: int
-  - PGID: int
-  - TZ: "str?"
+  PUID: int
+  PGID: int
+  TZ: "str?"
 slug: overseerr
 url: https://github.com/hoopty/hassio-addons/tree/main/overseerr#readme
 version: 0.2.0
