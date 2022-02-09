@@ -5,39 +5,55 @@ name: CI
 on:
   push:
   pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-  workflow_dispatch:
 
 jobs:
-  prepare:
-    name: Prepare
+  init:
+    name: Initialize build
     runs-on: ubuntu-latest
     outputs:
-      dir: ${{ steps.get-dirs.outputs.dir }} # generate output name dir by using inner step output
+      architectures: ${{ steps.info.outputs.architectures }}
+      # addons: ${{ steps.addons.outputs.addons }}
     steps:
-      - name: Checkout 
+      - name: Checkout
         uses: actions/checkout@v2
-      - name: Get Directories
-        id: get-dirs # Give it an id to handle to get step outputs in the outputs key above
-        # yamllint disable-line rule:line-length
-        run: echo "::set-output name=dir::$(ls -d */ | sed 's|/$||g' | jq -R -s -c 'split("\n")[:-1]')"
 
-  loop:
+      - name: Get Information
+        id: info
+        uses: home-assistant/actions/helpers/info@master
+
+      # - name: Get Addons
+      #   id: addons
+      #   # yamllint disable-line rule:line-length
+      #   run: echo "::set-output name=addons::$(ls -d */ | sed 's|/$||g' | jq -R -s -c 'split("\n")[:-1]')"
+
+  build:
     name: Build
+    needs: init
     runs-on: ubuntu-latest
-    needs: [prepare] # Depends on previous job
     strategy:
+      fail-fast: False
       matrix:
-        dir: ${{fromJson(needs.prepare.outputs.dir)}}
+        architecture: ${{ fromJson(needs.init.outputs.architectures) }}
+        # addons: ${{fromJson(needs.init.outputs.addons)}}
     steps:
-      - name: Test Build
+      - name: Checkout the repository
+        uses: actions/checkout@v2.4.0
+
+      - name: Build the builder
         uses: home-assistant/builder@master
         with:
           args: |
             --test \
-            --armhf --amd64 --aarch64 \
-            --target ${{matrix.dir}} \
-            --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
+            --amd64 \
+            --target /data/overseerr \
+            --generic latest
+
+      - name: Test ${{ matrix.architecture }} builder
+        uses: ./
+        with:
+          args: |
+            --test \
+            --${{ matrix.architecture }} \
+            --target /data/overseerr \
+            --generic ${{ github.sha }}
+            # --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
