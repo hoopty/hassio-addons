@@ -116,6 +116,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  # yamllint disable rule:line-length
   build:
     name: Build ${{ matrix.architecture }}
     needs:
