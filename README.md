@@ -1,6 +1,7 @@
 # Hassio Add-ons by hoopty
 
 ## About
+
 My hassio addon repository.
 
 ## Installation
@@ -15,11 +16,11 @@ https://github.com/hoopty/hassio-addons
 
 ## Available addons
 
-[//]: # (ADDONLIST_START)
+[//]: # "ADDONLIST_START"
 
 ### [overseerr](overseerr/)
+
 Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.
 
-[//]: # (ADDONLIST_END)
-
+[//]: # "ADDONLIST_END"
 [third-party-addons]: https://home-assistant.io/hassio/installing_third_party_addons/
