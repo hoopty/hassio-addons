@@ -1,0 +1,24 @@
+arch:
+  - aarch64
+  - amd64
+  - armhf
+backup_exclude:
+  - "**/logs/*"
+description: Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem
+image: hoopty/hassio-overseerr-{arch}
+map:
+  - config:rw
+name: Overseerr
+options:
+  - PUID: 1001
+  - PGID: 1001
+ports:
+  5055/tcp: 5055
+schema:
+  - PUID: int
+  - PGID: int
+  - TZ: "str?"
+slug: overseerr
+url: https://github.com/hoopty/hassio-addons/tree/main/overseerr#readme
+version: 0.2.0
+webui: http://[HOST]:[PORT:5055]
