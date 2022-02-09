@@ -18,10 +18,8 @@ comparison to installing any other Hass.io add-on.
 1. Check the logs of the add-on to see if everything went well.
 1. Carefully configure the add-on to your preferences, see the official documentation for for that.
 
-
 ## Configuration
 
 Webui can be found at `<your-ip>:5055`.
-
 
 [repository]: https://github.com/hoopty/hassio-addons
