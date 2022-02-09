@@ -7,13 +7,16 @@ jobs:
     name: Prepare
     runs-on: ubuntu-latest
     outputs:
-      dir: ${{ steps.set-dirs.outputs.dir }} # generate output name dir by using inner step output
+      dir: ${{ steps.get-dirs.outputs.dir }} # generate output name dir by using inner step output
     steps:
       - name: Checkout 
         uses: actions/checkout@v2
       - name: Get Directories
-        id: set-dirs # Give it an id to handle to get step outputs in the outputs key above
-        run: echo "::set-output name=dir::$(find * -type d -depth 0 | jq -R -s -c 'split("\n")[:-1]')"
+        id: get-dirs # Give it an id to handle to get step outputs in the outputs key above
+        run: |
+	  DIRS=$( find . -type d -depth 1 ! -name '.*' | sed 's|^./||g' | jq -R -s -c 'split("\n")[:-1]' )
+	  echo "DIRS=${DIRS}"
+	  echo "::set-output name=dir::${DIRS}"
 
   loop:
     name: Build
