@@ -34,7 +34,7 @@ jobs:
       fail-fast: False
       matrix:
         addon: [overseerr]
-        architecture: [amd64]
+        # architecture: [amd64]
         # architecture: [aarch64,amd64,armhf]
         # architecture: ${{ fromJson(needs.init.outputs.architectures) }}
         # addons: ${{fromJson(needs.init.outputs.addons)}}
@@ -48,13 +48,20 @@ jobs:
         with:
           path: ./${{ matrix.addon }}
 
-      - name: Test ${{ matrix.addon }}-${{ matrix.architecture }}
+      - name: Test ${{ matrix.addon }}
         uses: home-assistant/builder@master
         with:
           args: |
             --test \
-            --${{ matrix.architecture }} \
             --target /data/${{ matrix.addon }}
+
+      # - name: Test ${{ matrix.addon }}-${{ matrix.architecture }}
+      #   uses: home-assistant/builder@master
+      #   with:
+      #     args: |
+      #       --test \
+      #       --${{ matrix.architecture }} \
+      #       --target /data/${{ matrix.addon }}
 
       # - name: Login to GitHub Container Registry
       #   uses: docker/login-action@v1.12.0
