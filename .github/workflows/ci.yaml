@@ -48,21 +48,11 @@ jobs:
         with:
           path: ./${{ matrix.addon }}
 
-      - name: Build
-        uses: home-assistant/builder@master
-        with:
-          args: |
-            --test \
-            --amd64 \
-            --target /data/${{ matrix.addon }} \
-            --generic latest
-
       - name: Test ${{ matrix.addon }}-${{ matrix.architecture }}
-        uses: ./
+        uses: home-assistant/builder@master
         with:
           args: |
             --test \
             --${{ matrix.architecture }} \
             --target /data/${{ matrix.addon }} \
-            # --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
-            --generic ${{ github.sha }}
+            --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
