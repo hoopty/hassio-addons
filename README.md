@@ -17,7 +17,7 @@ https://github.com/hoopty/hassio-addons
 
 [//]: # (ADDONLIST_START)
 
-### [Overseerr](overseerr/)
+### [overseerr](overseerr/)
 Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.
 
 [//]: # (ADDONLIST_END)
