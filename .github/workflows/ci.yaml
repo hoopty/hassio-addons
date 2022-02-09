@@ -28,7 +28,7 @@ jobs:
         with:
           args: |
             --test \
-            --all \
+            --armhf --amd64 --aarch64 \
             --target ${{matrix.dir}} \
             --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
 
