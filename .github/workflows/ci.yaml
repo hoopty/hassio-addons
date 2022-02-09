@@ -11,20 +11,20 @@ jobs:
     name: Initialize build
     runs-on: ubuntu-latest
     outputs:
-      architectures: ${{ steps.info.outputs.architectures }}
-      # addons: ${{ steps.addons.outputs.addons }}
+      # architectures: ${{ steps.info.outputs.architectures }}
+      addons: ${{ steps.addons.outputs.addons }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Get Information
-        id: info
-        uses: home-assistant/actions/helpers/info@master
+      # - name: Get Information
+      #   id: info
+      #   uses: home-assistant/actions/helpers/info@master
 
-      # - name: Get Addons
-      #   id: addons
-      #   # yamllint disable-line rule:line-length
-      #   run: echo "::set-output name=addons::$(ls -d */ | sed 's|/$||g' | jq -R -s -c 'split("\n")[:-1]')"
+      - name: Get Addons
+        id: addons
+        # yamllint disable-line rule:line-length
+        run: echo "::set-output name=addons::$(ls -d */ | sed 's|/$||g' | jq -R -s -c 'split("\n")[:-1]')"
 
   build:
     name: Build
@@ -33,27 +33,36 @@ jobs:
     strategy:
       fail-fast: False
       matrix:
-        architecture: ${{ fromJson(needs.init.outputs.architectures) }}
+        addon: [overseerr]
+        architecture: [amd64]
+        # architecture: [aarch64,amd64,armhf]
+        # architecture: ${{ fromJson(needs.init.outputs.architectures) }}
         # addons: ${{fromJson(needs.init.outputs.addons)}}
     steps:
-      - name: Checkout the repository
-        uses: actions/checkout@v2.4.0
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Build the builder
+      - name: Get Information
+        id: info
+        uses: home-assistant/actions/helpers/info@master
+        with:
+          path: ./${{ matrix.addon }}
+
+      - name: Build
         uses: home-assistant/builder@master
         with:
           args: |
             --test \
             --amd64 \
-            --target /data/overseerr \
+            --target /data/${{ matrix.addon }} \
             --generic latest
 
-      - name: Test ${{ matrix.architecture }} builder
+      - name: Test ${{ matrix.addon }}-${{ matrix.architecture }}
         uses: ./
         with:
           args: |
             --test \
             --${{ matrix.architecture }} \
-            --target /data/overseerr \
-            --generic ${{ github.sha }}
+            --target /data/${{ matrix.addon }} \
             # --docker-hub ${{ secrets.DOCKERHUB_USERNAME }}
+            --generic ${{ github.sha }}
