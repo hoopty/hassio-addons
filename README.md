@@ -20,7 +20,8 @@ https://github.com/hoopty/hassio-addons
 
 ### [overseerr](overseerr/)
 
-Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem.
+Overseerr is a request management and media discovery tool built to work 
+with your existing Plex ecosystem.
 
 [//]: # "ADDONLIST_END"
 [third-party-addons]: https://home-assistant.io/hassio/installing_third_party_addons/

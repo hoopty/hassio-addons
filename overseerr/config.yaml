@@ -5,7 +5,7 @@ arch:
   - armhf
 backup_exclude:
   - "**/logs/*"
-description: Overseerr is a request management and media discovery tool built to work with your existing Plex ecosystem
+description: Overseerr is a request management and media discovery tool
 image: hoopty/hassio-overseerr-{arch}
 map:
   - config:rw

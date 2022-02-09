@@ -2,9 +2,12 @@
 
 ## About
 
-[Overseerr](https://github.com/sct/overseerr) - Request management and media discovery tool for the Plex ecosystem
+[Overseerr](https://github.com/sct/overseerr) - Request management and 
+media discovery tool for the Plex ecosystem
 
-This addon is based on the [docker image](https://github.com/linuxserver/docker-overseerr) from linuxserver.io.
+This addon is based on the 
+[docker image](https://github.com/linuxserver/docker-overseerr)
+from linuxserver.io.
 
 ## Installation
 
@@ -16,7 +19,8 @@ comparison to installing any other Hass.io add-on.
 1. Click the `Save` button to store your configuration.
 1. Start the add-on.
 1. Check the logs of the add-on to see if everything went well.
-1. Carefully configure the add-on to your preferences, see the official documentation for for that.
+1. Carefully configure the add-on to your preferences, see the official 
+documentation for for that.
 
 ## Configuration
 
