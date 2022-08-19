@@ -4,7 +4,7 @@ FROM $BUILD_FROM
 
 RUN \
     apk add --no-cache \
-        curl=7.79.1-r0 \
+        curl \
     \
     && curl -J -L -o /tmp/bashio.tar.gz \
         "https://github.com/hassio-addons/bashio/archive/v0.14.3.tar.gz" \
