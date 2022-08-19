@@ -1,8 +1,8 @@
-# Hassio Add-ons by hoopty
+# Hassio add-on repository by hoopty
 
 ## About
 
-My hassio addon repository.
+My hassio add-on repository.
 
 ## Installation
 

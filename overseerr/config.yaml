@@ -1,15 +1,18 @@
 ---
+name: Overseerr
+version: 0.2.3
+slug: overseerr
+description: Overseerr is a request management and media discovery tool
+url: "https://github.com/hoopty/hassio-addons/tree/main/overseerr#readme"
 arch:
   - aarch64
   - amd64
   - armhf
-backup_exclude:
-  - "**/logs/*"
-description: Overseerr is a request management and media discovery tool
-image: "ghcr.io/hoopty/hassio-overseerr-{arch}"
+init: false
 map:
   - config:rw
-name: Overseerr
+backup_exclude:
+  - "**/logs/*"
 options:
   PUID: 1001
   PGID: 1001
@@ -21,7 +24,5 @@ schema:
   PUID: int
   PGID: int
   TZ: "str?"
-slug: overseerr
-url: https://github.com/hoopty/hassio-addons/tree/main/overseerr#readme
-version: 0.2.2
 webui: http://[HOST]:[PORT:5055]
+image: "ghcr.io/hoopty/hassio-overseerr-{arch}"
