@@ -1,5 +1,5 @@
 ---
 build_from:
-  aarch64: linuxserver/overseerr:arm64v8-1.29.1
-  amd64: linuxserver/overseerr:amd64-1.29.1
-  armhf: linuxserver/overseerr:arm32v7-1.29.1
+  aarch64: linuxserver/overseerr:arm64v8-1.30.0
+  amd64: linuxserver/overseerr:amd64-1.30.0
+  armhf: linuxserver/overseerr:arm32v7-1.30.0
