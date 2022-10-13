@@ -23,7 +23,7 @@ jobs:
         arch: [aarch64,amd64,armhf]
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get Information
         id: info
