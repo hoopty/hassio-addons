@@ -1,6 +1,6 @@
 ---
 name: Overseerr
-version: 0.2.3
+version: 0.2.4
 slug: overseerr
 description: Overseerr is a request management and media discovery tool
 url: "https://github.com/hoopty/hassio-addons/tree/main/overseerr#readme"
